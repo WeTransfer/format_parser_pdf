@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe FormatParserPdf::Parser do
-  let(:parsed_pdf) {
-    subject.call(
-      File.open(
-        Pathname.new(fixtures_dir).join(pdf_file),
-        'rb'
-      )
+  let(:pdf) {
+    File.open(
+      Pathname.new(fixtures_dir).join(pdf_file),
+      'rb'
     )
   }
+
+  let(:parsed_pdf) { subject.call(pdf) }
 
   shared_examples :behave_like_pdf do |hash|
     let(:pdf_file) { hash.fetch(:file) }
@@ -45,11 +45,11 @@ describe FormatParserPdf::Parser do
     pending 'does not parse succesfully'
   end
 
-  describe 'a PDF file with a missing COUNT_HEADER' do
+  describe 'a PDF file with a missing COUNT_HEADER should be treated the same as a broken PDF' do
     let(:pdf_file) { 'missing_page_count.pdf' }
 
     it 'does not return a page count' do
-      expect(parsed_pdf.page_count).to eq(nil)
+      expect(parsed_pdf).to eq(nil)
     end
   end
 

@@ -1,4 +1,5 @@
 require 'pdf-reader'
+require_relative 'pdf_reader_overrides'
 require 'format_parser'
 require 'format_parser_pdf/version'
 
@@ -14,12 +15,13 @@ module FormatParserPdf
       return unless safe_read(io_constraint, 9) =~ PDF_MARKER
 
       begin
-        reader = PDF::Reader.new(io)
+        pdf_reader = PDF::Reader.new(io)
 
-        FormatParser::Document.new(format: :pdf, page_count: reader.page_count)
+        FormatParser::Document.new(
+          format: :pdf,
+          page_count: pdf_reader.page_count
+        )
       rescue PDF::Reader::MalformedPDFError
-        # Wrong PDF format but should still be a PDF?
-        FormatParser::Document.new(format: :pdf)
       end
     end
 
