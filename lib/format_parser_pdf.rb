@@ -22,5 +22,7 @@ module FormatParserPdf
         FormatParser::Document.new(format: :pdf)
       end
     end
+
+    FormatParser.register_parser self, natures: :document, formats: :pdf
   end
 end
