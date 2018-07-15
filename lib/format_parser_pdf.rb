@@ -25,6 +25,10 @@ module FormatParserPDF
     end
   end
 
+  # FormatParser includes a builtin PDF parser that only checks for the PDF magic comment
+  # at the start of file. That one needs to be disabled first
   FormatParser.deregister_parser(FormatParser::PDFParser)
+
+  # ...and replaced with ours
   FormatParser.register_parser Parser, natures: :document, formats: :pdf
 end
