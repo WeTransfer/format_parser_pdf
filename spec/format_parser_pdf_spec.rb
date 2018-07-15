@@ -18,6 +18,10 @@ describe 'PDF parser extension' do
     File.open(fixture_path(filename), 'rb')
   end
 
+  it 'defines a VERSION' do
+    expect(FormatParserPDF::VERSION).to be_kind_of(String)
+  end
+
   it 'only reads a part of the file when parsing' do
     file = open_fixture('keynote_export.pdf')
     read_spy = FormatParser::ReadLimiter.new(file)
