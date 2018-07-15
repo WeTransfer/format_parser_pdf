@@ -8,7 +8,6 @@ describe 'PDF parser extension' do
       expect(actual.format).to eq(:pdf)
       expect(actual.page_count).to eq(page_count)
     end
-    description { "be a FormatParser result for a PDF with `page_count' of #{page_count}" }
   end
 
   def fixture_path(filename)
