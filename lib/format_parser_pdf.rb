@@ -18,10 +18,8 @@ module FormatParserPDF
 
     def parse_using_pdf_reader(io)
       pdf_reader = PDF::Reader.new(IOExtension.new(io))
-      FormatParser::Document.new(
-        format: :pdf,
-        page_count: pdf_reader.page_count
-      )
+      page_count = pdf_reader.page_count
+      FormatParser::Document.new(format: :pdf, page_count: page_count)
     rescue PDF::Reader::MalformedPDFError
       nil
     end
