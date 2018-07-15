@@ -22,7 +22,7 @@ describe 'PDF parser extension' do
     file = open_fixture('keynote_export.pdf')
     read_spy = FormatParser::ReadLimiter.new(file)
 
-    parse_result = FormatParserPdf::Parser.new.call(read_spy)
+    parse_result = FormatParserPDF::Parser.new.call(read_spy)
 
     bytes_read = read_spy.bytes
     expect(file.size).to be > (1 * 1024 * 1024) # The file is about 2MB

@@ -1,4 +1,4 @@
-module FormatParserPdf
+module FormatParserPDF
   class Parser
     class IOExtension < FormatParser::IOConstraint
       def initialize(io)

@@ -5,7 +5,7 @@ require "format_parser_pdf/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "format_parser_pdf"
-  spec.version       = FormatParserPdf::VERSION
+  spec.version       = FormatParserPDF::VERSION
   spec.authors       = ["grdw"]
   spec.email         = ["gerard@wetransfer.com"]
 

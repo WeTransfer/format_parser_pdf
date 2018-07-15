@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FormatParserPdf::Parser do
+describe FormatParserPDF::Parser do
   let(:pdf) {
     File.open(
       Pathname.new(fixtures_dir).join(pdf_file),

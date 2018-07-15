@@ -3,7 +3,7 @@ require 'format_parser'
 require 'format_parser_pdf/io_extension'
 require 'format_parser_pdf/version'
 
-module FormatParserPdf
+module FormatParserPDF
   class Parser
     include FormatParser::IOUtils
 
