@@ -25,8 +25,8 @@ describe 'PDF parser extension' do
     parse_result = FormatParserPdf::Parser.new.call(read_spy)
 
     bytes_read = read_spy.bytes
-    expect(file.size).to be > (1 * 1024 * 1024) # while the file is about 2MB
-    expect(bytes_read).to be < (3 * 1024) # Read is around 1-2 KB
+    expect(file.size).to be > (1 * 1024 * 1024) # The file is about 2MB
+    expect(bytes_read).to be < (3 * 1024) # ..and we should be only reading around 1-2 KB
   end
 
   it 'detects the page count in the PDF' do
