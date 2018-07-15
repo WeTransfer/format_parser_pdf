@@ -19,6 +19,9 @@ module FormatParserPDF
     def parse_using_pdf_reader(io)
       pdf_reader = PDF::Reader.new(IOExtension.new(io))
       page_count = pdf_reader.page_count
+      # We might want to recover more useful items (such as page dimensions -
+      # media box, trim box, bleed box, art box and a few dozens other boxes)
+      # later on
       FormatParser::Document.new(format: :pdf, page_count: page_count)
     rescue PDF::Reader::MalformedPDFError
       nil
