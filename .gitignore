@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /.bundle/
 /.yardoc
 /_yardoc/
@@ -7,6 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+Gemfile.lock
 
 # rspec failure tracking
 .rspec_status
