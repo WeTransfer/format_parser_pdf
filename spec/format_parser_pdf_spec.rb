@@ -22,7 +22,7 @@ describe 'PDF parser extension' do
     file = open_fixture('keynote_export.pdf')
     read_spy = FormatParser::ReadLimiter.new(file)
 
-    parse_result = FormatParserPDF::Parser.new.call(read_spy)
+    FormatParserPDF::Parser.new.call(read_spy)
 
     bytes_read = read_spy.bytes
     expect(file.size).to be > (1 * 1024 * 1024) # The file is about 2MB
@@ -45,7 +45,7 @@ describe 'PDF parser extension' do
     parse_result = FormatParser.parse(open_fixture('keynote_export.pdf'))
     expect(parse_result).to be_pdf_with_pagecount(4)
   end
-  
+
   it 'returns nil when trying to parse a broken PDF or a document that is not a PDF' do
     parse_result = FormatParser.parse(open_fixture('missing_page_count.pdf'))
     expect(parse_result).to be_nil

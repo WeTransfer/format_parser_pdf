@@ -7,11 +7,11 @@ module FormatParserPDF
 
       def seek(n, seek_mode = IO::SEEK_SET)
         absolute_offset = case seek_mode
-          when IO::SEEK_SET
+                          when IO::SEEK_SET
             n
-          when IO::SEEK_CUR
+                          when IO::SEEK_CUR
             @io.pos + n
-          when IO::SEEK_END
+                          when IO::SEEK_END
             @io.size + n
           else
             raise Errno::EINVAL
