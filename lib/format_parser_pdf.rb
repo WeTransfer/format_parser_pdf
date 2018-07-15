@@ -28,7 +28,7 @@ module FormatParserPDF
       #   info: pdf_reader.info,
       #   metadata: pdf_reader.metadata,
       # }
-      FormatParser::Document.new(format: :pdf, page_count: page_count) #, intrinsics: intrinsics)
+      FormatParser::Document.new(format: :pdf, page_count: page_count) # , intrinsics: intrinsics)
     rescue PDF::Reader::MalformedPDFError
       nil
     end
