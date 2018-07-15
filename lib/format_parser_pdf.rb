@@ -21,8 +21,14 @@ module FormatParserPDF
       page_count = pdf_reader.page_count
       # We might want to recover more useful items (such as page dimensions -
       # media box, trim box, bleed box, art box and a few dozens other boxes)
-      # later on
-      FormatParser::Document.new(format: :pdf, page_count: page_count)
+      # later on. At the moment FormatParser::Document does not have `intrinsics' which
+      # is an omission we need to sort out on format_parser itself
+      # intrinsics = {
+      #   pdf_version: pdf_reader.pdf_version,
+      #   info: pdf_reader.info,
+      #   metadata: pdf_reader.metadata,
+      # }
+      FormatParser::Document.new(format: :pdf, page_count: page_count) #, intrinsics: intrinsics)
     rescue PDF::Reader::MalformedPDFError
       nil
     end
