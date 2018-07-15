@@ -24,7 +24,8 @@ module FormatParserPdf
       rescue PDF::Reader::MalformedPDFError
       end
     end
-
-    FormatParser.register_parser self, natures: :document, formats: :pdf
   end
+
+  FormatParser.deregister_parser(FormatParser::PDFParser)
+  FormatParser.register_parser Parser, natures: :document, formats: :pdf
 end
