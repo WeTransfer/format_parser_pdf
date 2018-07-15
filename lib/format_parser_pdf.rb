@@ -13,16 +13,17 @@ module FormatParserPdf
       io = FormatParser::IOConstraint.new(io)
 
       return unless safe_read(io, 9) =~ PDF_MARKER
+      parse_using_pdf_reader(io)
+    end
 
-      begin
-        pdf_reader = PDF::Reader.new(IOExtension.new(io))
-
-        FormatParser::Document.new(
-          format: :pdf,
-          page_count: pdf_reader.page_count
-        )
-      rescue PDF::Reader::MalformedPDFError
-      end
+    def parse_using_pdf_reader(io)
+      pdf_reader = PDF::Reader.new(IOExtension.new(io))
+      FormatParser::Document.new(
+        format: :pdf,
+        page_count: pdf_reader.page_count
+      )
+    rescue PDF::Reader::MalformedPDFError
+      nil
     end
   end
 
