@@ -1,4 +1,4 @@
-module FormatParserPdf
+module FormatParserPDF
   class Parser
     class IOExtension < FormatParser::IOConstraint
       def initialize(io)
@@ -6,16 +6,23 @@ module FormatParserPdf
       end
 
       def seek(n, seek_mode = IO::SEEK_SET)
-        case seek_mode
-        when IO::SEEK_SET
-          @io.seek(n)
-        when IO::SEEK_CUR
-          @io.seek(@io.pos + n)
-        when IO::SEEK_END
-          @io.seek(@io.size + n)
-        else
-          raise Errno::EINVAL
+        absolute_offset = case seek_mode
+                          when IO::SEEK_SET
+            n
+                          when IO::SEEK_CUR
+            @io.pos + n
+                          when IO::SEEK_END
+            @io.size + n
+          else
+            raise Errno::EINVAL
+          end
+
+        if absolute_offset < 0
+          # Raise a special exception that FormatParser ignores - it will stop the parser and skip to the next one
+          msg = "Can only seek to positive absolute offsets (requested seek to #{absolute_offset})"
+          raise FormatParser::IOUtils::InvalidRead, msg
         end
+        @io.seek(absolute_offset)
       end
 
       def rewind

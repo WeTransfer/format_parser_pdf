@@ -5,7 +5,7 @@ require "format_parser_pdf/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "format_parser_pdf"
-  spec.version       = FormatParserPdf::VERSION
+  spec.version       = FormatParserPDF::VERSION
   spec.authors       = ["grdw"]
   spec.email         = ["gerard@wetransfer.com"]
 
@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "wetransfer_style", "0.6.0"
 end
