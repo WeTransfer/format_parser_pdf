@@ -22,6 +22,13 @@ describe 'PDF parser extension' do
     expect(FormatParserPDF::VERSION).to be_kind_of(String)
   end
 
+  it 'provides shortcut matching on filename' do
+    parser = FormatParserPDF::Parser.new
+    expect(parser).to be_likely_match('document.pdf')
+    expect(parser).to be_likely_match('document.PDF')
+    expect(parser).not_to be_likely_match('transcript.docx')
+  end
+
   it 'only reads a part of the file when parsing' do
     file = open_fixture('keynote_export.pdf')
     read_spy = FormatParser::ReadLimiter.new(file)

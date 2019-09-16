@@ -9,6 +9,10 @@ module FormatParserPDF
 
     PDF_MARKER = /%PDF-1\.[0-9]{1}/
 
+    def likely_match?(filename)
+      filename =~ /\.pdf$/i
+    end
+
     def call(io)
       io = FormatParser::IOConstraint.new(io)
 
@@ -39,5 +43,5 @@ module FormatParserPDF
   FormatParser.deregister_parser(FormatParser::PDFParser)
 
   # ...and replaced with ours
-  FormatParser.register_parser Parser, natures: :document, formats: :pdf
+  FormatParser.register_parser Parser.new, natures: :document, formats: :pdf
 end
